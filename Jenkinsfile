@@ -3,7 +3,7 @@ node("linux") {
    
    stage('Clone repository') {
       git branch: 'master',
-      url: 'https://github.com/cheisr/flask-http.git' 
+      url: 'https://github.com/cheisr/opsschool_project_app.git' 
       checkout scm
    }
   
