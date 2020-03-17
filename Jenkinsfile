@@ -31,3 +31,4 @@ node("linux") {
     sh "aws eks --region us-east-1 update-kubeconfig --name opsschool_eks_cheisr"
     sh "kubectl apply -f deployment.yml"
    }
+}
