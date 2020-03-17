@@ -9,7 +9,7 @@ node("linux") {
   
 
    stage('Build image') {
-       app = docker.build("cheisr/opsschool_project", "python_app/")
+       app = docker.build("cheisr/opsschool_project")
    }
    
    stage('Test container') {
