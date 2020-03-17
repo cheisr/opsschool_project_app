@@ -28,6 +28,6 @@ node("linux") {
    }
 
    stage('Deploy') {
-    sh "aws eks --region us-east-1 update-kubeconfig --name opsschool_eks_cheisr --role-arn arn:aws:iam::212353307140:policy/describe_eks"
-    sh "kubectl apply -f K8s/project_app_pod_k8s.yml"
+    sh "aws eks --region us-east-1 update-kubeconfig --name opsschool_eks_cheisr"
+    sh "kubectl apply -f deployment.yml"
    }
