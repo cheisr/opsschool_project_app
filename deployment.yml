@@ -5,13 +5,14 @@ metadata:
   labels:
     app: project-app
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-    - port: 8181
-      targetPort: 8181
-      nodePort: 30000
+    - name: http
+      port: 80
+      targetPort: 5000
+      protocol: TCP
   selector:
-        app: project-app
+    app: project-app
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,7 +32,7 @@ spec:
     spec:
      containers:
      - name: project-app
-       image: cheisr/project-image:v1
+       image: cheisr/opsschool_project:latest
        resources:
          requests:
            memory: "64Mi"
