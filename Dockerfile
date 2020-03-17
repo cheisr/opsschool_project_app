@@ -4,7 +4,7 @@ RUN apk update && \
     apk add  python3 
 
 # We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt source_code/app
+COPY ./requirements.txt
 
 WORKDIR /app
 
