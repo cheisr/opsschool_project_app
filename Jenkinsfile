@@ -29,6 +29,7 @@ node("linux") {
 
    stage('Deploy') {
     sh "aws eks --region us-east-1 update-kubeconfig --name opsschool_eks_cheisr"
-    sh "kubectl apply -f deployment.yml"
+    sh "kubectl apply -f K8s_LB.yml"
+    sh "kubectl apply -f k8s_deployment.yml"
    }
 }
