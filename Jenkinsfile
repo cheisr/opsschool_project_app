@@ -13,7 +13,7 @@ node("linux") {
    }
    
    stage('Test container') {
-       response = app.withRun("-p 8181:5000"){
+       response = app.withRun("-p 8181:8181"){
            sh(script: "sleep 10; curl 127.0.0.1:8181", returnStdout: true)
        }
    }
