@@ -1,19 +1,10 @@
-FROM alpine:latest
-
-RUN apk update && \
-    apk add  python3 
-
-# We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt /app/requirements.txt
+FROM python:3.5-alpine
 
 WORKDIR /app
+COPY source/ /app
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 ENV MYSQL_ADDRESS MYSQL_USER MYSQL_PWD
 
-COPY . /app
-
-ENTRYPOINT [ "python3", "server.py" ]
-
-CMD [ "app.py" ]
+ENTRYPOINT ["python", "server.py"]
