@@ -6,7 +6,6 @@ node("linux") {
       url: 'https://github.com/cheisr/opsschool_project_app.git' 
       checkout scm
    }
-  
 
    stage('Build image') {
        app = docker.build("cheisr/opsschool_project")
@@ -28,8 +27,11 @@ node("linux") {
    }
 
    stage('Deploy') {
-    sh "aws eks --region us-east-1 update-kubeconfig --name opsschool_eks_cheisr"
-    sh "kubectl apply -f K8s_LB.yml"
-    sh "kubectl apply -f k8s_deployment.yml"
+    sh ''' 
+    export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks
+    kubectl apply -f k8s_deployment.yml
+    kubectl apply -f K8s_LB.yml
+    kubectl get svc -o wide
+    '''
    }
 }
