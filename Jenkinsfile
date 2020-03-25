@@ -28,7 +28,7 @@ node("linux") {
 
    stage('Deploy') {
     sh ''' 
-    export KUBECONFIG=/home/ubuntu/kubeconfig_opsSchool-eks
+    aws eks --region us-east-1 update-kubeconfig --name opsschool_eks_cheisr    
     kubectl apply -f k8s_deployment.yml
     kubectl apply -f K8s_LB.yml
     kubectl get svc -o wide
