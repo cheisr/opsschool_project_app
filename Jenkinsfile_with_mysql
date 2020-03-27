@@ -6,6 +6,12 @@ node("linux") {
       url: 'https://github.com/cheisr/opsschool_project_app.git' 
       checkout scm
    }
+   
+   stage('docker-compose') {
+         sh '''
+         docker-compose up -d
+         '''
+         }
 
    stage('Build image') {
        app = docker.build("cheisr/opsschool_project")
