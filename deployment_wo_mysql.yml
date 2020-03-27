@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: project-app
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: Recreate
   selector:
