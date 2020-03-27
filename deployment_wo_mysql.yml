@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: project-app
-   spec:
+    spec:
      containers:
      - name: project-app
        image: cheisr/opsschool_project:latest
