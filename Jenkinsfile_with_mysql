@@ -20,6 +20,12 @@ node("linux") {
    stage('Test container') {
        response = sh(script: "sleep 10; curl 127.0.0.1:8181", returnStdout: true)
    }
+   
+    stage('docker-compose') {
+         sh '''
+         docker-compose down
+         '''
+         }
 
    stage('Push image') {
        withDockerRegistry(registry:[
