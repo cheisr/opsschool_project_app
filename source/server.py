@@ -1,16 +1,22 @@
-'''
-Created on Jan 10, 2017
-
-@author: hanif
-'''
 
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from module.database import Database
+from prometheus_client import start_http_server, Counter, Summary
+
+call_metric = Counter('opsschool_monitor_flask_main_count', 'Number of visits to main', [ "service", "endpoint" ])
+time_metric = Summary('opsschool_monitor_flask_request_processing_seconds', 'Time spent processing request', [ "method" ])
 
 
 app = Flask(__name__)
 app.secret_key = "mys3cr3tk3y"
 db = Database()
+
+hello_world_timer = time_metric.labels(method="hello_world")
+@hello_world_timer.time()
+def hello_world():
+    call_metric.labels(service='opsschool_flask', endpoint='main').inc(1)
+    return 'Hey, we have a hello world!'
+
 
 @app.route('/')
 def index():
@@ -91,4 +97,5 @@ def page_not_found(error):
     return render_template('error.html')
 
 if __name__ == '__main__':
-    app.run(port=8181, host="0.0.0.0")
+    start_http_server(5001)
+    app.run(debug=False, port=8181, host="0.0.0.0")
