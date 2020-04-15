@@ -61,17 +61,3 @@ spec:
            - name: mysql-persistent-storage
              persistentVolumeClaim:
                claimName: mysql-pv-claim
-
----
-apiVersion: apps/v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pv-claim
-  labels:
-    app: project-app
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 20Gi
