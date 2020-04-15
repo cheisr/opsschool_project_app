@@ -16,12 +16,9 @@ spec:
     metadata:
       labels:
         app: project-app
-      annotations:
-        prometheus.io/probe: 'true'
-        prometheus.io/scrape: 'true'
     spec:
-      containers:
-      - name: project-app
+        containers:
+       - name: project-app
         image: cheisr/opsschool_project_app:latest
         resources:
           requests:
