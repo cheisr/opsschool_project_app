@@ -31,7 +31,7 @@ spec:
          valueFrom:
             configMapKeyRef:
                 name: mysql-config
-                key: mysql_host    
+                key: mysql_host
        - name: MYSQL_USER
          valueFrom:
             configMapKeyRef:
@@ -44,6 +44,33 @@ spec:
                 key: mysql_pass
      - name: project-mysql
        image: cheisr/opsschool_project_mysql:latest
-       resources: {}
+       resources:
+         requests:
+           memory: "64Mi"
+           cpu: "250m"
+         limits:
+          memory: "128Mi"
+          cpu: "500m"
        ports:
-       - containerPort: 3306
+         - containerPort: 3306
+           name: mysql
+         volumeMounts:
+           - name: mysql-persistent-storage
+             mountPath: /var/lib/mysql
+         volumes:
+           - name: mysql-persistent-storage
+             persistentVolumeClaim:
+               claimName: mysql-pv-claim
+---
+apiVersion: apps/v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: project-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
