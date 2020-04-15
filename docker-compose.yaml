@@ -3,14 +3,14 @@ version: '2'
 services:
   phonebook-mysql:
     container_name: phonebook-mysql
-    image: cheisr/opsschool_project/mysql
+    image: cheisr/opsschool_project_mysql
     ports:
       - "3306:3306"
     restart: always
 
   phonebook-app:
     container_name: phonebook-app
-    image: cheisr/opsschool_project/app
+    image: cheisr/opsschool_project_app
     depends_on:
       - phonebook-mysql
     ports:
