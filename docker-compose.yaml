@@ -3,18 +3,14 @@ version: '2'
 services:
   phonebook-mysql:
     container_name: phonebook-mysql
-    build:
-      context: .
-      dockerfile: Dockerfile-mysql
+    image: cheisr/opsschool_project/app
     ports:
       - "3306:3306"
     restart: always
 
   phonebook-app:
     container_name: phonebook-app
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: cheisr/opsschool_project/mysql
     depends_on:
       - phonebook-mysql
     ports:
