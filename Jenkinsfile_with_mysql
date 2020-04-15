@@ -35,8 +35,8 @@ node("linux") {
                url: '',
                credentialsId: 'dockerhub'
                ]){
-           app.push()
-           mysql.push()
+           sh(script: 'docker push cheisr/opsschool_project_app', returnStdout: true)
+           sh(script: 'docker push cheisr/opsschool_project_mysql', returnStdout: true)
        }
    }
 
