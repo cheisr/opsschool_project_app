@@ -44,13 +44,6 @@ spec:
                 key: mysql_pass
      - name: project-mysql
        image: cheisr/opsschool_project_mysql:latest
-       resources:
-         requests:
-           memory: "64Mi"
-           cpu: "250m"
-         limits:
-          memory: "128Mi"
-          cpu: "500m"
+       resources: {}
        ports:
        - containerPort: 3306
-    
