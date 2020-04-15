@@ -53,11 +53,24 @@ spec:
           cpu: "500m"
        ports:
          - containerPort: 3306
-           - name: mysql
-         volumeMounts:
+           name: mysql
+           volumeMounts:
            - name: mysql-persistent-storage
              mountPath: /var/lib/mysql
-         volumes:
+           volumes:
            - name: mysql-persistent-storage
              persistentVolumeClaim:
                claimName: mysql-pv-claim
+---
+apiVersion: apps/v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: project-app
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
