@@ -1,32 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: project-app
+  name: project-app 
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
   selector:
     matchLabels:
       app: project-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: project-app
+      annotations:
+        prometheus.io/probe: 'true'
+        prometheus.io/scrape: 'true'
     spec:
-     containers:
-     - name: project-app
-       image: cheisr/opsschool_project_app:latest
-       resources:
-         requests:
-           memory: "64Mi"
-           cpu: "250m"
-         limits:
-          memory: "128Mi"
-          cpu: "500m"
-       ports:
+      containers:
+      - name: project-app
+        image: cheisr/opsschool_project_app:latest
+        resources:
+          requests:
+            cpu: 250m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 128Mi
+        ports:
        - containerPort: 8181
-       env:
+        env:
        - name: MYSQL_ADDRESS
          valueFrom:
             configMapKeyRef:
@@ -53,4 +59,3 @@ spec:
           cpu: "500m"
        ports:
        - containerPort: 3306
-      
