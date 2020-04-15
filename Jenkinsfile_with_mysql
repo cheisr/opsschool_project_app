@@ -1,5 +1,5 @@
 node("linux") {
-   def DockerImage = "project-image"
+   def app
    
    stage('Clone repository') {
       git branch: 'master',
