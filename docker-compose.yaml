@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-mysql
+    ports:
+      - "3306:3306"
     restart: always
 
   phonebook-app:
