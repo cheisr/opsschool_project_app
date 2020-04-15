@@ -3,5 +3,4 @@ Flask==1.0.2
 itsdangerous==1.1.0
 MarkupSafe==1.1.1
 pymysql
-pip3
 prometheus_client
