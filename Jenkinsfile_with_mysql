@@ -8,8 +8,8 @@ node("linux") {
    }
    
       stage('Build image') {
-       app = sh(script: 'docker build -q -f Dockerfile -t cheisr/opsschool_project/app .', returnStdout: true)
-       mysql = sh(script: 'docker build -q -f Dockerfile-mysql -t cheisr/opsschool_project/mysql .', returnStdout: true)
+       app = sh(script: 'docker build -q -f Dockerfile -t cheisr/opsschool_project_app .', returnStdout: true)
+       mysql = sh(script: 'docker build -q -f Dockerfile-mysql -t cheisr/opsschool_project_mysql .', returnStdout: true)
    }
    
    
