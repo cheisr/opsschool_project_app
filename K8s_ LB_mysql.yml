@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: project-service
+  labels:
+    app: project-mysql
+spec:
+  type: LoadBalancer
+  ports:
+    - name: project-mysql
+      port: 3306
+      targetPort: 3306
+      protocol: TCP
+  selector:
+    app: project-mysql
+
