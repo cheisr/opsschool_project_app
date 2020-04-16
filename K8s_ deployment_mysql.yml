@@ -1,0 +1,40 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-mysql
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: project-mysql
+  template:
+    metadata:
+      labels:
+        app: project-mysql
+    spec:
+     containers:
+     - name: project-mysql
+       image: cheisr/opsschool_project_mysql:latest
+       resources: {}
+       ports:
+         - containerPort: 3306
+           name: mysql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
