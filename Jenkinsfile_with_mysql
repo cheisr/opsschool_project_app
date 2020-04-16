@@ -44,9 +44,9 @@ node("linux") {
     sh ''' 
     aws eks --region us-east-1 update-kubeconfig --name opsschool_eks_cheisr    
     kubectl apply -f k8s_deployment.yml
-    kubectl apply -f K8s_deployment_mysql.yml
-    kubectl apply -f K8s_LB_mysql.yml
-    kubectl apply -f K8s_LB.yml
+    kubectl apply -f k8s_deployment_mysql.yml
+    kubectl apply -f k8s_LB_mysql.yml
+    kubectl apply -f k8s_LB.yml
     sleep 20s
     kubectl get svc -o wide
     '''
