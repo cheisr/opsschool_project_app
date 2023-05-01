@@ -1,6 +1,6 @@
 pymysql
 prometheus_client
 Click==7.0
-Flask==1.0.2
+Flask==2.3.2
 itsdangerous==1.1.0
 MarkupSafe==1.1.1
